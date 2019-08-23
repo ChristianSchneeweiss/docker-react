@@ -10,3 +10,18 @@ before_install:
 
 script:
   - docker run -e CI=true waterchiller/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-598081929961"
+  bucket_path: "docker-react"
+  on: 
+    branch: master
+
+
+
+access_key_id:
+  secure: $AWS_ACCESS_KEY
